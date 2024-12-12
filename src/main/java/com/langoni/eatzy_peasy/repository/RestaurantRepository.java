@@ -5,6 +5,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,5 +18,10 @@ public class RestaurantRepository {
     public List<Restaurant> listAllRestaurant(){
         TypedQuery<Restaurant> query = entityManager.createQuery("select r from Restaurant r", Restaurant.class);
         return query.getResultList();
+    }
+
+    @Transactional
+    public Restaurant addRestaurant(Restaurant restaurant){
+        return entityManager.merge(restaurant);
     }
 }
