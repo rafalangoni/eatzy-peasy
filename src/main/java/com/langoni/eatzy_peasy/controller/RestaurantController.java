@@ -25,4 +25,9 @@ public class RestaurantController {
     public Restaurant createRestaurant(@RequestBody Restaurant restaurant){
         return restaurantRepository.addRestaurant(restaurant);
     }
+
+    @GetMapping("/{id}")
+    public Restaurant getById(@PathVariable Long id){
+        return restaurantRepository.findById(id);
+    }
 }

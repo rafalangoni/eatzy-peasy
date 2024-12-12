@@ -24,4 +24,8 @@ public class RestaurantRepository {
     public Restaurant addRestaurant(Restaurant restaurant){
         return entityManager.merge(restaurant);
     }
+
+    public Restaurant findById(Long id){
+        return entityManager.find(Restaurant.class, id);
+    }
 }
