@@ -6,8 +6,6 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -34,13 +32,13 @@ public class RestaurantJPAEntityManager {
         entityManager.persist(restaurant);
     }
 
-    public Restaurant findById(Long id) {
+    public Restaurant findRestaurantById(Long id) {
         return entityManager.find(Restaurant.class, id);
     }
 
     @Transactional
     public void deleteRestaurant(Long id) {
-        var restaurantToRemove = findById(id);
+        var restaurantToRemove = findRestaurantById(id);
         entityManager.remove(restaurantToRemove);
     }
 }

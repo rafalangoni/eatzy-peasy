@@ -33,7 +33,7 @@ public class RestaurantController {
 
     @GetMapping("/{id}")
     public Restaurant getById(@PathVariable Long id){
-        return entityManager.findById(id);
+        return entityManager.findRestaurantById(id);
     }
 
     @DeleteMapping("/{id}")
