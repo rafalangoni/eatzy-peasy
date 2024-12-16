@@ -6,6 +6,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 @Entity
 @Data
 public class Kitchen {
@@ -14,4 +17,5 @@ public class Kitchen {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
 }
