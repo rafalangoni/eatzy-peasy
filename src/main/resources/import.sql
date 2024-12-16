@@ -10,8 +10,8 @@ insert into restaurant (id, name, kitchen_id) values (3, 'Yakisoba do Mane', 3);
 insert into payment_type (id, description) values (1, 'Credit card');
 insert into payment_type (id, description) values (2, 'Gift card');
 
-insert into permission (id, name, description) values (1, 'Manager', 'Can remove or edit orders');
-insert into permission (id, name, description) values (2, 'Chef', 'Can remove or edit ingredients');
+insert into permission (id, name, description) values (1, 'EDIT_KITCHEN', 'Can remove or edit kitchens');
+insert into permission (id, name, description) values (2, 'SEARCH_KITCHEN', 'Can search kitchens');
 
 insert into state (id, name) values (1, 'MG');
 
