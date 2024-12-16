@@ -19,8 +19,12 @@ public class Restaurant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private BigDecimal deliveryFee;
+
     private Boolean isOpen;
     private Boolean isActive;
     private LocalDate registerDate;
