@@ -34,13 +34,11 @@ public class CityRepositoryImpl implements CityRepository {
 
     @Override
     public void removeCity(Long id) {
-        var cityToRemove = findCityById(id);
-        entityManager.remove(cityToRemove);
+        entityManager.remove(findCityById(id));
     }
 
     @Override
     public void removeCity(City city) {
-        var cityToRemove = findCityById(city.getId());
-        entityManager.remove(cityToRemove);
+        entityManager.remove(findCityById(city.getId()));
     }
 }

@@ -45,7 +45,6 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
     @Override
     @Transactional
     public void deleteRestaurant(Long id) {
-        var restaurantToRemove = findRestaurantById(id);
-        entityManager.remove(restaurantToRemove);
+        entityManager.remove(findRestaurantById(id));
     }
 }

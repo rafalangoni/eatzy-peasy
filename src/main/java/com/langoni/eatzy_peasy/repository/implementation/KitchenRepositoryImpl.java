@@ -34,13 +34,11 @@ public class KitchenRepositoryImpl implements KitchenRepository {
 
     @Override
     public void removeKitchen(Long id) {
-        var kitchenToRemove = findKitchenById(id);
-        entityManager.remove(kitchenToRemove);
+        entityManager.remove(findKitchenById(id));
     }
 
     @Override
     public void removeKitchen(Kitchen kitchen) {
-        var kitchenToRemove = findKitchenById(kitchen.getId());
-        entityManager.remove(kitchenToRemove);
+        entityManager.remove(findKitchenById(kitchen.getId()));
     }
 }
