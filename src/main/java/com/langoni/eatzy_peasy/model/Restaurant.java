@@ -25,10 +25,10 @@ public class Restaurant {
     @Column(nullable = false)
     private BigDecimal deliveryFee;
 
-    private Boolean isOpen;
-    private Boolean isActive;
-    private LocalDate registerDate;
-    private LocalDate updateDate;
+//    private Boolean isOpen;
+//    private Boolean isActive;
+//    private LocalDate registerDate;
+//    private LocalDate updateDate;
 
     @ManyToOne
     @JoinColumn(name = "kitchen_id")

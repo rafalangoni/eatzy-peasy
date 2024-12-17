@@ -1,7 +1,7 @@
 package com.langoni.eatzy_peasy.controller;
 
 import com.langoni.eatzy_peasy.model.Restaurant;
-import com.langoni.eatzy_peasy.service.RestaurantService;
+import com.langoni.eatzy_peasy.repository.implementation.RestaurantRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import java.util.List;
 public class RestaurantController {
 
     @Autowired
-    private RestaurantService service;
+    private RestaurantRepositoryImpl service;
 
     @GetMapping
     public List<Restaurant> getAll(){

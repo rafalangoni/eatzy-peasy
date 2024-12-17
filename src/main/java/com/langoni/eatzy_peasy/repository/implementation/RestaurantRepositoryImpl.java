@@ -1,17 +1,18 @@
-package com.langoni.eatzy_peasy.service;
+package com.langoni.eatzy_peasy.repository.implementation;
 
 import com.langoni.eatzy_peasy.model.Restaurant;
 import com.langoni.eatzy_peasy.repository.RestaurantRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
-public class RestaurantService implements RestaurantRepository {
+@Component
+public class RestaurantRepositoryImpl implements RestaurantRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
