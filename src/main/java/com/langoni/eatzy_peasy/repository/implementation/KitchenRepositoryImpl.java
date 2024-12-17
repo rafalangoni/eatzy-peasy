@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class KitchenRepositoryImpl implements KitchenRepository {
     }
 
     @Override
+    @Transactional
     public Kitchen addKitchen(Kitchen kitchen) {
         entityManager.persist(kitchen);
         return kitchen;
@@ -33,11 +35,13 @@ public class KitchenRepositoryImpl implements KitchenRepository {
     }
 
     @Override
+    @Transactional
     public void removeKitchen(Long id) {
         entityManager.remove(findKitchenById(id));
     }
 
     @Override
+    @Transactional
     public void removeKitchen(Kitchen kitchen) {
         entityManager.remove(findKitchenById(kitchen.getId()));
     }

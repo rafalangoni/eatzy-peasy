@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -27,17 +28,20 @@ public class CityRepositoryImpl implements CityRepository {
     }
 
     @Override
+    @Transactional
     public City saveCity(City city) {
         entityManager.persist(city);
         return city;
     }
 
     @Override
+    @Transactional
     public void removeCity(Long id) {
         entityManager.remove(findCityById(id));
     }
 
     @Override
+    @Transactional
     public void removeCity(City city) {
         entityManager.remove(findCityById(city.getId()));
     }

@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -27,17 +28,20 @@ public class PaymentTypeImpl implements PaymentTypeRepository {
     }
 
     @Override
+    @Transactional
     public PaymentType addPaymentType(PaymentType paymentType) {
         entityManager.persist(paymentType);
         return paymentType;
     }
 
     @Override
+    @Transactional
     public void removePayment(PaymentType paymentType) {
         entityManager.remove(findPaymentTypeById(paymentType.getId()));
     }
 
     @Override
+    @Transactional
     public void removePayment(Long id) {
         entityManager.remove(findPaymentTypeById(id));
     }

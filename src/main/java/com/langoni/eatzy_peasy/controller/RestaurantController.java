@@ -13,31 +13,31 @@ import java.util.List;
 public class RestaurantController {
 
     @Autowired
-    private RestaurantRepositoryImpl service;
+    private RestaurantRepositoryImpl restaurantRepository;
 
     @GetMapping
     public List<Restaurant> getAll(){
-        return service.listAllRestaurant();
+        return restaurantRepository.listAllRestaurant();
     }
 
     @PutMapping("/{id}")
     public Restaurant updateRestaurant(@PathVariable Long id, @RequestBody Restaurant restaurant){
-        return service.updateRestaurant(id, restaurant);
+        return restaurantRepository.updateRestaurant(id, restaurant);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void createRestaurant(@RequestBody Restaurant restaurant){
-        service.addRestaurant(restaurant);
+        restaurantRepository.addRestaurant(restaurant);
     }
 
     @GetMapping("/{id}")
     public Restaurant getById(@PathVariable Long id){
-        return service.findRestaurantById(id);
+        return restaurantRepository.findRestaurantById(id);
     }
 
     @DeleteMapping("/{id}")
     public void removeRestaurant(@PathVariable Long id){
-        service.deleteRestaurant(id);
+        restaurantRepository.deleteRestaurant(id);
     }
 }

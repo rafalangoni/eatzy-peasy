@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class PermissionRepositoryImpl implements PermissionRepository {
     }
 
     @Override
+    @Transactional
     public Permission addPermission(Permission permission) {
         entityManager.persist(permission);
         return permission;
@@ -33,11 +35,13 @@ public class PermissionRepositoryImpl implements PermissionRepository {
     }
 
     @Override
+    @Transactional
     public void removePermission(Long id) {
         entityManager.remove(findPermissionById(id));
     }
 
     @Override
+    @Transactional
     public void removePermission(Permission permission) {
         entityManager.remove(findPermissionById(permission.getId()));
     }
