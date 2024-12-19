@@ -1,4 +1,4 @@
-package com.langoni.eatzy_peasy.controller;
+package com.langoni.eatzy_peasy.api.controller;
 
 import com.langoni.eatzy_peasy.model.Restaurant;
 import com.langoni.eatzy_peasy.repository.implementation.RestaurantRepositoryImpl;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/restaurant")
+@RequestMapping("/restaurants")
 public class RestaurantController {
 
     @Autowired

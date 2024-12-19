@@ -1,5 +1,6 @@
 package com.langoni.eatzy_peasy.model;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import jakarta.persistence.*;
 import lombok.Data;
 
