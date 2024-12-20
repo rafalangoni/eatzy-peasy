@@ -2,7 +2,9 @@ package com.langoni.eatzy_peasy.api.controller;
 
 import com.langoni.eatzy_peasy.model.Kitchen;
 import com.langoni.eatzy_peasy.model.KitchenXmlWrapper;
+import com.langoni.eatzy_peasy.model.Restaurant;
 import com.langoni.eatzy_peasy.repository.implementation.KitchenRepositoryImpl;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -57,5 +59,17 @@ public class KitchenController {
     @ResponseStatus(HttpStatus.CREATED)
     public Kitchen addKitchen(@RequestBody Kitchen kitchen) {
         return kitchenRepository.addKitchen(kitchen);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Kitchen> update(@PathVariable Long id, @RequestBody Kitchen kitchen){
+        Kitchen currentKitchen = kitchenRepository.findKitchenById(id);
+        if(currentKitchen != null){
+            BeanUtils.copyProperties(kitchen, currentKitchen, "id");
+//            currentKitchen.setName(kitchen.getName());
+            currentKitchen = kitchenRepository.addKitchen(currentKitchen);
+            return ResponseEntity.ok(currentKitchen);
+        }
+        return ResponseEntity.notFound().build();
     }
 }
