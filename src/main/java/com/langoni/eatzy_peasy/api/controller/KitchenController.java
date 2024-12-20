@@ -6,12 +6,14 @@ import com.langoni.eatzy_peasy.model.Restaurant;
 import com.langoni.eatzy_peasy.repository.implementation.KitchenRepositoryImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -51,8 +53,18 @@ public class KitchenController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void removeKitchen(@PathVariable Long id) {
-        kitchenRepository.removeKitchen(id);
+    public ResponseEntity<Kitchen> removeKitchen(@PathVariable Long id) {
+        var currentKitchen = kitchenRepository.findKitchenById(id);
+
+        try {
+            if(currentKitchen != null){
+                kitchenRepository.removeKitchen(currentKitchen);
+                return ResponseEntity.noContent().build();
+            }
+            return ResponseEntity.notFound().build();
+        } catch (DataIntegrityViolationException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
     }
 
     @PostMapping
