@@ -5,6 +5,7 @@ import com.langoni.eatzy_peasy.domain.repository.RestaurantRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,18 +23,24 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
         return query.getResultList();
     }
 
-    @Override
-    @Transactional
-    public Restaurant updateRestaurant(Long id, Restaurant restaurant) {
-        var retrievedRestaurant = entityManager.find(Restaurant.class, id);
-        retrievedRestaurant.setName(restaurant.getName());
-        return entityManager.merge(retrievedRestaurant);
-    }
+//    @Override
+//    public Restaurant updateRestaurant(Long id, Restaurant restaurant) {
+//        return entityManager.merge(id, restaurant);
+//    }
+
+////    @Override
+//    @Transactional
+//    public Restaurant updateRestaurant(Long id, Restaurant restaurant) {
+//        var retrievedRestaurant = entityManager.find(Restaurant.class, id);
+//        BeanUtils.copyProperties(restaurant, retrievedRestaurant, "id");
+////        retrievedRestaurant.setName(restaurant.getName());
+//        return entityManager.merge(retrievedRestaurant);
+//    }
 
     @Override
     @Transactional
     public void addRestaurant(Restaurant restaurant) {
-        entityManager.persist(restaurant);
+        entityManager.merge(restaurant);
     }
 
     @Override
