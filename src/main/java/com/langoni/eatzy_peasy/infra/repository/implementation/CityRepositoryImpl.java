@@ -1,7 +1,7 @@
-package com.langoni.eatzy_peasy.repository.implementation;
+package com.langoni.eatzy_peasy.infra.repository.implementation;
 
-import com.langoni.eatzy_peasy.model.City;
-import com.langoni.eatzy_peasy.repository.CityRepository;
+import com.langoni.eatzy_peasy.domain.model.City;
+import com.langoni.eatzy_peasy.domain.repository.CityRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;

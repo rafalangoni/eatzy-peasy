@@ -1,7 +1,7 @@
-package com.langoni.eatzy_peasy.repository.implementation;
+package com.langoni.eatzy_peasy.infra.repository.implementation;
 
-import com.langoni.eatzy_peasy.model.Permission;
-import com.langoni.eatzy_peasy.repository.PermissionRepository;
+import com.langoni.eatzy_peasy.domain.model.Permission;
+import com.langoni.eatzy_peasy.domain.repository.PermissionRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;

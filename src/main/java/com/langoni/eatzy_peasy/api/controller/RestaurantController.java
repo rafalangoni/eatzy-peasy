@@ -1,7 +1,7 @@
 package com.langoni.eatzy_peasy.api.controller;
 
-import com.langoni.eatzy_peasy.model.Restaurant;
-import com.langoni.eatzy_peasy.repository.implementation.RestaurantRepositoryImpl;
+import com.langoni.eatzy_peasy.domain.model.Restaurant;
+import com.langoni.eatzy_peasy.infra.repository.implementation.RestaurantRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

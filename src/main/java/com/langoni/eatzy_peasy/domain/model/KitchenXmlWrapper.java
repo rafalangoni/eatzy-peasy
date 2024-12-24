@@ -1,4 +1,4 @@
-package com.langoni.eatzy_peasy.model;
+package com.langoni.eatzy_peasy.domain.model;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;

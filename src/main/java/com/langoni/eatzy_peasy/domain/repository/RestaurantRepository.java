@@ -1,6 +1,6 @@
-package com.langoni.eatzy_peasy.repository;
+package com.langoni.eatzy_peasy.domain.repository;
 
-import com.langoni.eatzy_peasy.model.Restaurant;
+import com.langoni.eatzy_peasy.domain.model.Restaurant;
 
 import java.util.List;
 

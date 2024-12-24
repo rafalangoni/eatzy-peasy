@@ -1,9 +1,9 @@
 package com.langoni.eatzy_peasy.api.controller;
 
-import com.langoni.eatzy_peasy.model.Kitchen;
-import com.langoni.eatzy_peasy.model.KitchenXmlWrapper;
-import com.langoni.eatzy_peasy.repository.implementation.KitchenRepositoryImpl;
-import com.langoni.eatzy_peasy.service.KitchenService;
+import com.langoni.eatzy_peasy.domain.model.Kitchen;
+import com.langoni.eatzy_peasy.domain.model.KitchenXmlWrapper;
+import com.langoni.eatzy_peasy.infra.repository.implementation.KitchenRepositoryImpl;
+import com.langoni.eatzy_peasy.domain.service.KitchenService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -18,20 +18,20 @@ import java.util.List;
 @RequestMapping(value = "/kitchens")
 public class KitchenController {
 
-    @Autowired
-    private KitchenRepositoryImpl kitchenRepository;
+//    @Autowired
+//    private KitchenRepositoryImpl kitchenRepository;
 
     @Autowired
     private KitchenService kitchenService;
 
     @GetMapping
     public List<Kitchen> listAll() {
-        return kitchenRepository.listAllKitchens();
+        return kitchenService.listAllKitchen();
     }
 
     @GetMapping(produces = MediaType.APPLICATION_XML_VALUE)
     public KitchenXmlWrapper listAllXml() {
-        return new KitchenXmlWrapper(kitchenRepository.listAllKitchens());
+        return new KitchenXmlWrapper(kitchenService.listAllKitchen());
     }
 
     @GetMapping(value = "/{kitchenId}")

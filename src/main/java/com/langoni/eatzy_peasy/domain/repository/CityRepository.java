@@ -1,6 +1,6 @@
-package com.langoni.eatzy_peasy.repository;
+package com.langoni.eatzy_peasy.domain.repository;
 
-import com.langoni.eatzy_peasy.model.City;
+import com.langoni.eatzy_peasy.domain.model.City;
 
 import java.util.List;
 

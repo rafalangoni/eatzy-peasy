@@ -1,14 +1,14 @@
-package com.langoni.eatzy_peasy.model;
+package com.langoni.eatzy_peasy.domain.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Entity
-@Table(name = "permission")
+@Table(name = "city")
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Permission {
+public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +17,7 @@ public class Permission {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
-    private String description;
+    @ManyToOne
+    @JoinColumn(name = "state_id")
+    private State state;
 }

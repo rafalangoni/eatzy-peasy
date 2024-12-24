@@ -1,11 +1,9 @@
-package com.langoni.eatzy_peasy.model;
+package com.langoni.eatzy_peasy.domain.model;
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 @Entity
 @Data

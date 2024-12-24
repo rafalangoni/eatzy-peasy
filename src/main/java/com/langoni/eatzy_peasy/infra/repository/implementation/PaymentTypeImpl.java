@@ -1,7 +1,7 @@
-package com.langoni.eatzy_peasy.repository.implementation;
+package com.langoni.eatzy_peasy.infra.repository.implementation;
 
-import com.langoni.eatzy_peasy.model.PaymentType;
-import com.langoni.eatzy_peasy.repository.PaymentTypeRepository;
+import com.langoni.eatzy_peasy.domain.model.PaymentType;
+import com.langoni.eatzy_peasy.domain.repository.PaymentTypeRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;

@@ -1,15 +1,14 @@
-package com.langoni.eatzy_peasy.model;
+package com.langoni.eatzy_peasy.domain.model;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import jakarta.persistence.*;
 import lombok.Data;
-
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import lombok.EqualsAndHashCode;
 
 @Entity
+@Table(name = "state")
 @Data
-public class Kitchen {
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+public class State {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,5 +16,4 @@ public class Kitchen {
 
     @Column(nullable = false)
     private String name;
-
 }

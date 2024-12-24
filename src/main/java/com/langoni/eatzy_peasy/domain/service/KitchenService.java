@@ -1,7 +1,7 @@
-package com.langoni.eatzy_peasy.service;
+package com.langoni.eatzy_peasy.domain.service;
 
-import com.langoni.eatzy_peasy.model.Kitchen;
-import com.langoni.eatzy_peasy.repository.KitchenRepository;
+import com.langoni.eatzy_peasy.domain.model.Kitchen;
+import com.langoni.eatzy_peasy.domain.repository.KitchenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
