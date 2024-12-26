@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class KitchenService {
@@ -14,23 +15,23 @@ public class KitchenService {
     private KitchenRepository kitchenRepository;
 
     public void removeKitchen(Long id) {
-        kitchenRepository.removeKitchen(id);
+        kitchenRepository.deleteById(id);
     }
 
-    public Kitchen findKitchenById(Long id) {
-        return kitchenRepository.findKitchenById(id);
+    public Optional<Kitchen> findKitchenById(Long id) {
+        return kitchenRepository.findById(id);
     }
 
     public Kitchen addKitchen(Kitchen kitchen) {
-        return kitchenRepository.addKitchen(kitchen);
+        return kitchenRepository.save(kitchen);
     }
 
     public List<Kitchen> listAllKitchen() {
-        return kitchenRepository.listAllKitchens();
+        return kitchenRepository.findAll();
     }
-
-    public List<Kitchen> listAllByName(String name){
-        return kitchenRepository.listAllByName(name);
-    }
+//
+//    public List<Kitchen> listAllByName(String name){
+//        return kitchenRepository.listAllByName(name);
+//    }
 
 }

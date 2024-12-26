@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CityService {
@@ -14,19 +15,19 @@ public class CityService {
     private CityRepository cityRepository;
 
     public List<City> listAllCities() {
-        return cityRepository.listAllCities();
+        return cityRepository.findAll();
     }
 
     public City addCity(City city) {
-        return cityRepository.saveCity(city);
+        return cityRepository.save(city);
     }
 
-    public City findById(Long id){
-        return cityRepository.findCityById(id);
+    public Optional<City> findById(Long id){
+        return cityRepository.findById(id);
     }
 
     public void removeCity(Long id){
-        cityRepository.removeCity(id);
+        cityRepository.deleteById(id);
     }
 
 

@@ -2,7 +2,6 @@ package com.langoni.eatzy_peasy.api.controller;
 
 import com.langoni.eatzy_peasy.domain.model.Restaurant;
 import com.langoni.eatzy_peasy.domain.service.RestaurantService;
-import com.langoni.eatzy_peasy.infra.repository.implementation.RestaurantRepositoryImpl;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/restaurants")
@@ -27,7 +27,7 @@ public class RestaurantController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateRestaurant(@PathVariable Long id, @RequestBody Restaurant restaurant){
         try {
-            var retrievedRestaurant = restaurantService.findRestaurantById(restaurant.getId());
+            var retrievedRestaurant = restaurantService.findRestaurantById(restaurant.getId()).orElse(null);
             if(retrievedRestaurant != null){
                 BeanUtils.copyProperties(restaurant, retrievedRestaurant, "id");
                 restaurantService.addRestaurant(retrievedRestaurant);
@@ -46,7 +46,7 @@ public class RestaurantController {
     }
 
     @GetMapping("/{id}")
-    public Restaurant getById(@PathVariable Long id){
+    public Optional<Restaurant> getById(@PathVariable Long id){
         return restaurantService.findRestaurantById(id);
     }
 

@@ -2,7 +2,6 @@ package com.langoni.eatzy_peasy.api.controller;
 
 import com.langoni.eatzy_peasy.domain.model.Kitchen;
 import com.langoni.eatzy_peasy.domain.model.KitchenXmlWrapper;
-import com.langoni.eatzy_peasy.infra.repository.implementation.KitchenRepositoryImpl;
 import com.langoni.eatzy_peasy.domain.service.KitchenService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +28,10 @@ public class KitchenController {
         return kitchenService.listAllKitchen();
     }
 
-    @GetMapping("/by-name")
-    public List<Kitchen> listAllByName(String name) {
-        return kitchenService.listAllByName(name);
-    }
+//    @GetMapping("/by-name")
+//    public List<Kitchen> listAllByName(String name) {
+//        return kitchenService.listAllByName(name);
+//    }
 
 
     @GetMapping(produces = MediaType.APPLICATION_XML_VALUE)
@@ -50,7 +49,7 @@ public class KitchenController {
 //                .status(HttpStatus.FOUND)
 //                .headers(headers)
 //                .build();
-        var kitchen = kitchenService.findKitchenById(id);
+        var kitchen = kitchenService.findKitchenById(id).orElse(null);
 
         if (kitchen != null) {
             return ResponseEntity.ok(kitchen);
@@ -64,8 +63,8 @@ public class KitchenController {
         var currentKitchen = kitchenService.findKitchenById(id);
 
         try {
-            if(currentKitchen != null){
-                kitchenService.removeKitchen(currentKitchen.getId());
+            if (currentKitchen != null) {
+                kitchenService.removeKitchen(currentKitchen.get().getId());
                 return ResponseEntity.noContent().build();
             }
             return ResponseEntity.notFound().build();
@@ -81,9 +80,9 @@ public class KitchenController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Kitchen> updateKitchen(@PathVariable Long id, @RequestBody Kitchen kitchen){
-        Kitchen currentKitchen = kitchenService.findKitchenById(id);
-        if(currentKitchen != null){
+    public ResponseEntity<Kitchen> updateKitchen(@PathVariable Long id, @RequestBody Kitchen kitchen) {
+        Kitchen currentKitchen = kitchenService.findKitchenById(id).orElse(null);
+        if (currentKitchen != null) {
             BeanUtils.copyProperties(kitchen, currentKitchen, "id");
 //            currentKitchen.setName(kitchen.getName());
             currentKitchen = kitchenService.addKitchen(currentKitchen);
