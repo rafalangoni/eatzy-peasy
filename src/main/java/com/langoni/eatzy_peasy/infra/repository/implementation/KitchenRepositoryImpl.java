@@ -23,6 +23,13 @@ public class KitchenRepositoryImpl implements KitchenRepository {
     }
 
     @Override
+    public List<Kitchen> listAllByName(String name) {
+        TypedQuery<Kitchen> query = entityManager.createQuery("select k from Kitchen k where name like :name", Kitchen.class);
+        return query.setParameter("name", "%" + name + "%")
+                .getResultList();
+    }
+
+    @Override
     @Transactional
     public Kitchen addKitchen(Kitchen kitchen) {
         entityManager.persist(kitchen);

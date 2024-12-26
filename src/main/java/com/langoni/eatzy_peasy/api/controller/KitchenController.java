@@ -29,6 +29,12 @@ public class KitchenController {
         return kitchenService.listAllKitchen();
     }
 
+    @GetMapping("/by-name")
+    public List<Kitchen> listAllByName(String name) {
+        return kitchenService.listAllByName(name);
+    }
+
+
     @GetMapping(produces = MediaType.APPLICATION_XML_VALUE)
     public KitchenXmlWrapper listAllXml() {
         return new KitchenXmlWrapper(kitchenService.listAllKitchen());

@@ -29,4 +29,8 @@ public class KitchenService {
         return kitchenRepository.listAllKitchens();
     }
 
+    public List<Kitchen> listAllByName(String name){
+        return kitchenRepository.listAllByName(name);
+    }
+
 }

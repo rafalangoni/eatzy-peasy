@@ -14,6 +14,7 @@ insert into permission (id, name, description) values (1, 'EDIT_KITCHEN', 'Can r
 insert into permission (id, name, description) values (2, 'SEARCH_KITCHEN', 'Can search kitchens');
 
 insert into state (id, name) values (1, 'MG');
+insert into state (id, name) values (2, 'DF');
 
 insert into city (id, name, state_id) values (1, 'Monte Carmelo', 1);
 insert into city (id, name, state_id) values (2, 'Uberlândia', 1);
