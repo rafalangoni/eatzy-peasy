@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
+public interface RestaurantRepository extends JpaRepository<Restaurant, Long>, RestaurantRepositoryImplInterface {
 //    @Query("select r from Restaurant r where r.name like %:nameParameter%")
     List<Restaurant> findByNameSqlLike(@Param("nameParameter") String name);
 

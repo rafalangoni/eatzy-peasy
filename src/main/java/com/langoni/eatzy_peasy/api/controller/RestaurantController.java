@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +32,11 @@ public class RestaurantController {
     @GetMapping("/all-by-name")
     public List<Restaurant> getAllByNameLike(String name){
         return restaurantRepository.findByNameSqlLike(name);
+    }
+
+    @GetMapping("/customized-interface")
+    public List<Restaurant> listAllRestaurantCustomizedInterface(String name, BigDecimal initialDeliveryFee, BigDecimal finalDeliveryFee){
+        return restaurantRepository.listAllRestaurantCustomizedInterface(name, initialDeliveryFee, finalDeliveryFee);
     }
 
     @PutMapping("/{id}")
