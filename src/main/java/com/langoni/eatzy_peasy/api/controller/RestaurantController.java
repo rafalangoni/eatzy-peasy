@@ -1,6 +1,7 @@
 package com.langoni.eatzy_peasy.api.controller;
 
 import com.langoni.eatzy_peasy.domain.model.Restaurant;
+import com.langoni.eatzy_peasy.domain.repository.RestaurantRepository;
 import com.langoni.eatzy_peasy.domain.service.RestaurantService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.BeanUtils;
@@ -19,9 +20,17 @@ public class RestaurantController {
     @Autowired
     private RestaurantService restaurantService;
 
+    @Autowired
+    private RestaurantRepository restaurantRepository;
+
     @GetMapping
     public List<Restaurant> getAll(){
         return restaurantService.listAllRestaurant();
+    }
+
+    @GetMapping("/all-by-name")
+    public List<Restaurant> getAllByNameLike(String name){
+        return restaurantRepository.findByNameSqlLike(name);
     }
 
     @PutMapping("/{id}")
