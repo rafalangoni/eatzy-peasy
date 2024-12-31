@@ -12,9 +12,10 @@ import java.util.List;
 
 @Repository
 public interface RestaurantRepository extends
-        JpaRepository<Restaurant, Long>,
+        CustomJpaRepository<Restaurant, Long>,
         RestaurantRepositoryImplInterface,
         JpaSpecificationExecutor<Restaurant> {
+
 //    @Query("select r from Restaurant r where r.name like %:nameParameter%")
     List<Restaurant> findByNameSqlLike(@Param("nameParameter") String name);
 

@@ -87,4 +87,9 @@ public class RestaurantController {
         return restaurantRepository.byNameLike(name);
     }
 
+    @GetMapping("/fetch-first")
+    public Optional<Restaurant> fetchFirstRestaurante(){
+        return restaurantRepository.findFirst();
+    }
+
 }
