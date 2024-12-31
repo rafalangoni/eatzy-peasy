@@ -1,7 +1,9 @@
 package com.langoni.eatzy_peasy.infra.repository.implementation;
 
 import com.langoni.eatzy_peasy.domain.model.Restaurant;
+import com.langoni.eatzy_peasy.domain.repository.RestaurantRepository;
 import com.langoni.eatzy_peasy.domain.repository.RestaurantRepositoryImplInterface;
+import com.langoni.eatzy_peasy.infra.repository.specification.RestaurantSpecsFactory;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -9,6 +11,8 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -22,6 +26,10 @@ public class RestaurantRepositoryImpl implements RestaurantRepositoryImplInterfa
 
     @PersistenceContext
     private EntityManager entityManager;
+
+    @Autowired
+    @Lazy
+    private RestaurantRepository restaurantRepository;
 
     public List<Restaurant> listAllRestaurantCustomizedInterface(String name, BigDecimal initialDeliveryFee, BigDecimal finalDeliveryFee) {
 
@@ -50,6 +58,12 @@ public class RestaurantRepositoryImpl implements RestaurantRepositoryImplInterfa
         TypedQuery<Restaurant> query = entityManager.createQuery(criteria);
         return query.getResultList();
 
+    }
+
+    @Override
+    public List<Restaurant> byNameLike(String name) {
+        return restaurantRepository.findAll(
+                RestaurantSpecsFactory.withFreeDelivery().and(RestaurantSpecsFactory.byNameLike(name)));
     }
 }
 

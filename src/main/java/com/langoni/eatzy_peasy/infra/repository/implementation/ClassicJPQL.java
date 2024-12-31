@@ -26,5 +26,10 @@ public class ClassicJPQL implements RestaurantRepositoryImplInterface {
                 .setParameter("finalDeliveryFee", finalDeliveryFee)
                 .getResultList();
     }
+
+    @Override
+    public List<Restaurant> byNameLike(String name) {
+        return List.of();
+    }
 }
 

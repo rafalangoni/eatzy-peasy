@@ -9,5 +9,9 @@ import java.util.List;
 @Repository
 public interface RestaurantRepositoryImplInterface {
 
-    List<Restaurant> listAllRestaurantCustomizedInterface(String name, BigDecimal initialDeliveryFee, BigDecimal finalDeliveryFee);
+    List<Restaurant> listAllRestaurantCustomizedInterface(
+            String name, BigDecimal initialDeliveryFee, BigDecimal finalDeliveryFee);
+
+    List<Restaurant> byNameLike(String name);
+
 }

@@ -18,6 +18,8 @@ public interface RestaurantRepository extends
 //    @Query("select r from Restaurant r where r.name like %:nameParameter%")
     List<Restaurant> findByNameSqlLike(@Param("nameParameter") String name);
 
+
+
 //    List<Restaurant> listAllRestaurant();
 ////    Restaurant updateRestaurant(Long id, Restaurant restaurant);
 //    void addRestaurant(Restaurant restaurant);

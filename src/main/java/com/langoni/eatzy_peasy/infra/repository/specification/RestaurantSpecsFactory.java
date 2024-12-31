@@ -5,7 +5,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 import java.math.BigDecimal;
 
-public class RestaurantSpecs {
+public class RestaurantSpecsFactory {
 
     public static Specification<Restaurant> withFreeDelivery() {
         return (root, query, criteriaBuilder) ->

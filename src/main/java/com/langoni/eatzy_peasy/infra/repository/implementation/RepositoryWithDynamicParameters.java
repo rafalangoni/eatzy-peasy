@@ -49,4 +49,9 @@ public class RepositoryWithDynamicParameters implements RestaurantRepositoryImpl
         return query.getResultList();
 
     }
+
+    @Override
+    public List<Restaurant> byNameLike(String name) {
+        return List.of();
+    }
 }
