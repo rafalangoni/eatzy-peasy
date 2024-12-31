@@ -4,6 +4,7 @@ import com.langoni.eatzy_peasy.domain.model.Restaurant;
 import com.langoni.eatzy_peasy.domain.repository.RestaurantRepository;
 import com.langoni.eatzy_peasy.domain.service.RestaurantService;
 import com.langoni.eatzy_peasy.infra.repository.specification.RestaurantByNameSpec;
+import com.langoni.eatzy_peasy.infra.repository.specification.RestaurantSpecs;
 import com.langoni.eatzy_peasy.infra.repository.specification.RestaurantWithFreeDeliverySpec;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.BeanUtils;
@@ -79,6 +80,11 @@ public class RestaurantController {
         var byNameLike = new RestaurantByNameSpec(name);
 
         return restaurantRepository.findAll(withFreeDelivery.and(byNameLike));
+    }
+
+    @GetMapping("/with-free-delivery-lambda")
+    public List<Restaurant> freeDeliveryAndNameLikeLambda(@RequestParam String name){
+        return restaurantRepository.findAll(RestaurantSpecs.withFreeDelivery().and(RestaurantSpecs.byNameLike(name)));
     }
 
 }
