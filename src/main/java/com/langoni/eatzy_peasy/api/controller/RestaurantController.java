@@ -3,6 +3,8 @@ package com.langoni.eatzy_peasy.api.controller;
 import com.langoni.eatzy_peasy.domain.model.Restaurant;
 import com.langoni.eatzy_peasy.domain.repository.RestaurantRepository;
 import com.langoni.eatzy_peasy.domain.service.RestaurantService;
+import com.langoni.eatzy_peasy.infra.repository.specification.RestaurantByNameSpec;
+import com.langoni.eatzy_peasy.infra.repository.specification.RestaurantWithFreeDeliverySpec;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,4 +72,13 @@ public class RestaurantController {
     public void removeRestaurant(@PathVariable Long id){
         restaurantService.deleteRestaurant(id);
     }
+
+    @GetMapping("/with-free-delivery")
+    public List<Restaurant> freeDeliveryAndNameLike(@RequestParam String name){
+        var withFreeDelivery = new RestaurantWithFreeDeliverySpec();
+        var byNameLike = new RestaurantByNameSpec(name);
+
+        return restaurantRepository.findAll(withFreeDelivery.and(byNameLike));
+    }
+
 }

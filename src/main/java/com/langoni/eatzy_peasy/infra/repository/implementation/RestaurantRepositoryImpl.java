@@ -35,7 +35,6 @@ public class RestaurantRepositoryImpl implements RestaurantRepositoryImplInterfa
         if(StringUtils.hasLength(name)){
             predicates.add(criteriaBuilder.like(rootRestaurant.get("name"), "%"+ name + "%"));
         }
-
         if(initialDeliveryFee != null){
             predicates.add(criteriaBuilder.greaterThanOrEqualTo(rootRestaurant.get("deliveryFee"), initialDeliveryFee));
         }
