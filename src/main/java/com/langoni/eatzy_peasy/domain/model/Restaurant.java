@@ -1,5 +1,6 @@
 package com.langoni.eatzy_peasy.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -34,10 +35,14 @@ public class Restaurant {
     @JoinColumn(name = "kitchen_id")
     private Kitchen kitchen;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "restaurant_payment_type",
         joinColumns = @JoinColumn(name = "restaurant_id"),
         inverseJoinColumns = @JoinColumn(name = "payment_type_id"))
     private List<PaymentType> paymentTypes = new ArrayList<>();
+
+    @Embedded
+    private Address address;
 
 }
