@@ -32,16 +32,6 @@ public class RestaurantController {
         return restaurantService.listAllRestaurant();
     }
 
-    @GetMapping("/all-by-name")
-    public List<Restaurant> getAllByNameLike(String name){
-        return restaurantRepository.findByNameSqlLike(name);
-    }
-
-    @GetMapping("/customized-interface")
-    public List<Restaurant> listAllRestaurantCustomizedInterface(String name, BigDecimal initialDeliveryFee, BigDecimal finalDeliveryFee){
-        return restaurantRepository.listAllRestaurantCustomizedInterface(name, initialDeliveryFee, finalDeliveryFee);
-    }
-
     @PutMapping("/{id}")
     public ResponseEntity<?> updateRestaurant(@PathVariable Long id, @RequestBody Restaurant restaurant){
         try {
@@ -74,22 +64,6 @@ public class RestaurantController {
         restaurantService.deleteRestaurant(id);
     }
 
-    @GetMapping("/with-free-delivery")
-    public List<Restaurant> freeDeliveryAndNameLike(@RequestParam String name){
-        var withFreeDelivery = new RestaurantWithFreeDeliverySpec();
-        var byNameLike = new RestaurantByNameSpec(name);
 
-        return restaurantRepository.findAll(withFreeDelivery.and(byNameLike));
-    }
-
-    @GetMapping("/with-free-delivery-lambda")
-    public List<Restaurant> freeDeliveryAndNameLikeLambda(@RequestParam String name){
-        return restaurantRepository.byNameLike(name);
-    }
-
-    @GetMapping("/fetch-first")
-    public Optional<Restaurant> fetchFirstRestaurante(){
-        return restaurantRepository.findFirst();
-    }
 
 }

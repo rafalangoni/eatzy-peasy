@@ -11,6 +11,8 @@ insert into restaurant (id, name, delivery_fee, kitchen_id) values (4, 'Frete Gr
 insert into payment_type (id, description) values (1, 'Credit card');
 insert into payment_type (id, description) values (2, 'Gift card');
 
+insert into restaurant_payment_type (payment_type_id, restaurant_id) values (1,1), (1,2), (2,1), (2,2);
+
 insert into permission (id, name, description) values (1, 'EDIT_KITCHEN', 'Can remove or edit kitchens');
 insert into permission (id, name, description) values (2, 'SEARCH_KITCHEN', 'Can search kitchens');
 
