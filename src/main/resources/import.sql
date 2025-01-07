@@ -3,10 +3,10 @@ insert into kitchen (name, id) values ('Japanese', 2);
 insert into kitchen (name, id) values ('Chinese', 3);
 insert into kitchen (name, id) values ('Brazilian', 4);
 
-insert into restaurant (id, name, delivery_fee, kitchen_id) values (1, 'Feijoadao do Ze', 4.99, 1);
-insert into restaurant (id, name, delivery_fee, kitchen_id) values (2, 'Sushi do Joao', 5.99,2);
-insert into restaurant (id, name, delivery_fee, kitchen_id) values (3, 'Yakisoba do Mane', 6.99,3);
-insert into restaurant (id, name, delivery_fee, kitchen_id) values (4, 'Frete Gratis do Jose', 0,3);
+insert into restaurant (id, name, delivery_fee, kitchen_id, registration_date, update_date) values (1, 'Feijoadao do Ze', 4.99, 1, utc_timestamp, utc_timestamp);
+insert into restaurant (id, name, delivery_fee, kitchen_id registration_date, update_date) values (2, 'Sushi do Joao', 5.99,2 utc_timestamp, utc_timestamp);
+insert into restaurant (id, name, delivery_fee, kitchen_id registration_date, update_date) values (3, 'Yakisoba do Mane', 6.99,3 utc_timestamp, utc_timestamp);
+insert into restaurant (id, name, delivery_fee, kitchen_id registration_date, update_date) values (4, 'Frete Gratis do Jose', 0,3 utc_timestamp, utc_timestamp);
 
 insert into permission (id, name, description) values (1, 'EDIT_KITCHEN', 'Can remove or edit kitchens');
 insert into permission (id, name, description) values (2, 'SEARCH_KITCHEN', 'Can search kitchens');

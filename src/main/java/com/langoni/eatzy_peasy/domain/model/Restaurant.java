@@ -50,9 +50,11 @@ public class Restaurant {
     private Address address;
 
     @CreationTimestamp
+    @Column(name = "registration_date")
     private LocalDateTime registrationDate;
 
     @UpdateTimestamp
+    @Column(name = "update_date")
     private LocalDateTime updateDate;
 
 }
