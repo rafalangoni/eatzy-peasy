@@ -37,7 +37,7 @@ public class RestaurantController {
         try {
             var retrievedRestaurant = restaurantService.findRestaurantById(restaurant.getId()).orElse(null);
             if(retrievedRestaurant != null){
-                BeanUtils.copyProperties(restaurant, retrievedRestaurant, "id", "paymentTypes");
+                BeanUtils.copyProperties(restaurant, retrievedRestaurant, "id", "paymentTypes", "address");
                 restaurantService.addRestaurant(retrievedRestaurant);
                 return ResponseEntity.status(HttpStatus.OK).body(retrievedRestaurant);
             }

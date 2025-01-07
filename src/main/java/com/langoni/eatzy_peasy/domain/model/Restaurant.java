@@ -3,8 +3,11 @@ package com.langoni.eatzy_peasy.domain.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +45,14 @@ public class Restaurant {
         inverseJoinColumns = @JoinColumn(name = "payment_type_id"))
     private List<PaymentType> paymentTypes = new ArrayList<>();
 
+//    @JsonIgnore
     @Embedded
     private Address address;
+
+    @CreationTimestamp
+    private LocalDateTime registrationDate;
+
+    @UpdateTimestamp
+    private LocalDateTime updateDate;
 
 }
