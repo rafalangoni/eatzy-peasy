@@ -31,8 +31,6 @@ public class Restaurant {
 
 //    private Boolean isOpen;
 //    private Boolean isActive;
-//    private LocalDate registerDate;
-//    private LocalDate updateDate;
 
     @ManyToOne
     @JoinColumn(name = "kitchen_id")
@@ -44,6 +42,10 @@ public class Restaurant {
         joinColumns = @JoinColumn(name = "restaurant_id"),
         inverseJoinColumns = @JoinColumn(name = "payment_type_id"))
     private List<PaymentType> paymentTypes = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "restaurant")
+    private List<Product> products = new ArrayList<>();
 
 //    @JsonIgnore
     @Embedded
