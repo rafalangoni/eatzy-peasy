@@ -16,8 +16,12 @@ public interface RestaurantRepository extends
         RestaurantRepositoryImplInterface,
         JpaSpecificationExecutor<Restaurant> {
 
+    @Query("select r from Restaurant r join r.kitchen join fetch r.paymentTypes")
+    List<Restaurant> findAll();
+
 //    @Query("select r from Restaurant r where r.name like %:nameParameter%")
     List<Restaurant> findByNameSqlLike(@Param("nameParameter") String name);
+
 
 
 

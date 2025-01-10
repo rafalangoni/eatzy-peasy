@@ -1,10 +1,12 @@
 package com.langoni.eatzy_peasy.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.context.annotation.Lazy;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -32,12 +34,14 @@ public class Restaurant {
 //    private Boolean isOpen;
 //    private Boolean isActive;
 
-    @ManyToOne
-    @JoinColumn(name = "kitchen_id")
+    @JsonIgnore
+    @JsonIgnoreProperties("hibernateLazyInitializer")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "kitchen_id", nullable = false)
     private Kitchen kitchen;
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "restaurant_payment_type",
         joinColumns = @JoinColumn(name = "restaurant_id"),
         inverseJoinColumns = @JoinColumn(name = "payment_type_id"))
@@ -47,7 +51,7 @@ public class Restaurant {
     @OneToMany(mappedBy = "restaurant")
     private List<Product> products = new ArrayList<>();
 
-//    @JsonIgnore
+    @JsonIgnore
     @Embedded
     private Address address;
 
