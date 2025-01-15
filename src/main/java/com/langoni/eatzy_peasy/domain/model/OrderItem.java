@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "order_item")
@@ -27,4 +29,12 @@ public class OrderItem {
     private BigDecimal totalPrice;
 
     private String comments;
+
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Product product;
+
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Orders order;
 }

@@ -6,6 +6,8 @@ import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -38,5 +40,23 @@ public class Orders {
 
     @Column(name = "delivery_date")
     private LocalDate deliveryDate;
+
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private PaymentType paymentType;
+
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Restaurant restaurant;
+
+    @ManyToOne
+    @JoinColumn(name = "user_customer_id")
+    private User customer;
+
+    @Embedded
+    private Address deliveryAddress;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> items = new ArrayList<>();
 
 }
