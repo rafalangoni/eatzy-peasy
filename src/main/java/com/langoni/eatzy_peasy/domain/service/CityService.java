@@ -2,6 +2,7 @@ package com.langoni.eatzy_peasy.domain.service;
 
 import com.langoni.eatzy_peasy.domain.model.City;
 import com.langoni.eatzy_peasy.domain.repository.CityRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,8 @@ public class CityService {
     }
 
     public Optional<City> findById(Long id){
-        return cityRepository.findById(id);
+        return Optional.ofNullable(cityRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("City not found.")));
     }
 
     public void removeCity(Long id){

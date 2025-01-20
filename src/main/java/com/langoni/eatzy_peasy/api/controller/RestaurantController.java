@@ -3,9 +3,6 @@ package com.langoni.eatzy_peasy.api.controller;
 import com.langoni.eatzy_peasy.domain.model.Restaurant;
 import com.langoni.eatzy_peasy.domain.repository.RestaurantRepository;
 import com.langoni.eatzy_peasy.domain.service.RestaurantService;
-import com.langoni.eatzy_peasy.infra.repository.specification.RestaurantByNameSpec;
-import com.langoni.eatzy_peasy.infra.repository.specification.RestaurantSpecsFactory;
-import com.langoni.eatzy_peasy.infra.repository.specification.RestaurantWithFreeDeliverySpec;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,15 +24,15 @@ public class RestaurantController {
     private RestaurantRepository restaurantRepository;
 
     @GetMapping
-    public List<Restaurant> getAll(){
+    public List<Restaurant> getAll() {
         return restaurantService.listAllRestaurant();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateRestaurant(@PathVariable Long id, @RequestBody Restaurant restaurant){
+    public ResponseEntity<?> updateRestaurant(@PathVariable Long id, @RequestBody Restaurant restaurant) {
         try {
             var retrievedRestaurant = restaurantService.findRestaurantById(restaurant.getId()).orElse(null);
-            if(retrievedRestaurant != null){
+            if (retrievedRestaurant != null) {
                 BeanUtils.copyProperties(restaurant, retrievedRestaurant, "id", "paymentTypes", "address", "registrationDate", "products");
                 restaurantService.addRestaurant(retrievedRestaurant);
                 return ResponseEntity.status(HttpStatus.OK).body(retrievedRestaurant);
@@ -49,21 +45,20 @@ public class RestaurantController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createRestaurant(@RequestBody Restaurant restaurant){
+    public void createRestaurant(@RequestBody Restaurant restaurant) {
         restaurantService.addRestaurant(restaurant);
     }
 
     @GetMapping("/{id}")
-    public Optional<Restaurant> getById(@PathVariable Long id){
+    public Optional<Restaurant> getById(@PathVariable Long id) {
         return restaurantService.findRestaurantById(id);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void removeRestaurant(@PathVariable Long id){
+    public void removeRestaurant(@PathVariable Long id) {
         restaurantService.deleteRestaurant(id);
     }
-
 
 
 }
