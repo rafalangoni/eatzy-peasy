@@ -37,10 +37,16 @@ public class CityController {
         cityService.removeCity(id);
     }
 
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public City getById(@PathVariable Long id){
+        return cityService.findById(id);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<City> updateCity(@PathVariable Long id, @RequestBody City city) {
         try {
-            City retrievedCity = cityService.findById(id).orElse(null);
+            City retrievedCity = cityService.findById(id);
             if (retrievedCity != null) {
                 BeanUtils.copyProperties(city, retrievedCity, "id");
                 cityService.addCity(retrievedCity);
